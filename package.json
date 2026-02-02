@@ -1,0 +1,25 @@
+{
+  "name": "devices-lab-documentation-template",
+  "version": "1.0.0",
+  "description": "A markdown documentation template for device documentation that adheres to the Devices Lab 'official' styles and layouts",
+  "main": "index.js",
+  "repository": "https://github.com/devices-lab/website-template.git",
+  "author": "Dr John Vidler <j.vidler@lancaster.ac.uk>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "markdown-it-emoji": "^3.0.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.1",
+    "postcss": "^8.4.33",
+    "postcss-load-config": "^4.0.2",
+    "autoprefixer": "^10.4.17",
+    "@11ty/eleventy-plugin-bundle": "^1.0.0"
+  },
+  "scripts": {
+    "dev": "npx @11ty/eleventy --serve",
+    "build": "npx @11ty/eleventy"
+  }
+}
