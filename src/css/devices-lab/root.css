@@ -13,6 +13,7 @@ h1, h2, h3, h4, h5, h6 {
 	font-style: bold;
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
+	text-align: center;
 }
 h1 { font-size: 2.25rem; }
 h2 { font-size: 1.875rem; }
@@ -35,17 +36,33 @@ pre, code {
 	font-family: Menlo, Consolas, Monaco, Adwaita Mono, Liberation Mono, Lucida Console, monospace;
 }
 
+pre {
+	margin: 1rem;
+}
+
+code {
+	font-size: 0.9rem;
+	padding: 0.1rem;
+	background-color: var(--code-bg-color);
+}
+
+a {
+	color: var(--color-root-link);
+	text-decoration: none;
+	display: inline-block;
+	@apply border-solid;
+	@apply border-b-2;
+	@apply border-black;
+	@apply rounded-sm;
+}
+
 .heading-banner {
 	background-color: var(--banner-bg-color);
 	color: var(--banner-fg-color);
 	padding: 0.5rem;
-	height: 4rem;
-	padding-left: 2rem;
-	padding-right: 2rem;
 	@apply flex;
+	@apply flex-col;
 	@apply items-center;
-	@apply justify-between;
-	@apply gap-4;
 }
 
 .line-image {
@@ -55,7 +72,7 @@ pre, code {
 .page {
 	padding: 0.5rem;
 	@apply flex;
-	@apply gap-4;
+	@apply gap-2;
 	@apply justify-center;
 }
 
@@ -66,13 +83,6 @@ pre, code {
 	padding-bottom: 1.5rem;
 	padding-top: 0.5rem;
 	max-width: 1000px;
-}
-
-.page > .sidebar {
-	width: 200px;
-	padding: 1rem;
-	border: 1px dashed var(--color-lu-2);
-	border-radius: var(--box-corner-radius);
 }
 
 .content > .note {
@@ -133,12 +143,30 @@ pre, code {
 	margin-top: 0.5rem;
 	margin-bottom: 0.75rem;
 	line-height: 1.6;
+	font-size: large;
 }
 
 .content img {
 	max-width: 100%;
 	height: auto;
 	border-radius: var(--box-corner-radius);
+}
+
+.content figure {
+	margin: 0;
+	margin-top: 1.5rem;
+	margin-bottom: 1.5rem;
+	text-align: center;
+	max-width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.content figure img {
+	border-radius: var(--box-corner-radius);
+	margin-left: auto;
+	margin-right: auto;
+	@apply drop-shadow-md;
 }
 
 .content pre {
@@ -148,4 +176,107 @@ pre, code {
 	overflow-x: auto;
 	margin-top: 0.75rem;
 	margin-bottom: 0.75rem;
+}
+
+.page > .sidebar {
+	display: none;
+}
+
+.nav-wrapper {
+	position: sticky;
+	top: 1cap;
+	margin: 0;
+	padding: 1rem;
+	padding-top: 1rem;
+	border: 1px dashed var(--color-lu-4);
+	border-radius: var(--box-corner-radius);
+	background-color: var(--sidebar-bg-color);
+	@apply drop-shadow-md;
+}
+
+.nav-wrapper h3 {
+	margin-top: 0;
+	margin-bottom: 0.5rem;
+	text-align: center;
+}
+
+.nav-wrapper hr {
+	border: none;
+	border-top: 1px dashed var(--color-lu-4);
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+	margin-left: -1rem;
+	margin-right: -1rem;
+}
+
+.nav-wrapper p {
+	text-align: center;
+}
+
+.nav-wrapper p img {
+	border-radius: 25%;
+	margin-left: auto;
+	margin-right: auto;
+	@apply drop-shadow-md;
+}
+
+.table-of-contents {
+	position: relative;
+}
+
+.table-of-contents a {
+	text-decoration: none;
+	color: var(--color-root-text-secondary);
+}
+
+.table-of-contents a:hover {
+	text-decoration: underline;
+}
+
+.table-of-contents ol {
+	border: none;
+	padding: 0;
+	padding-left: 1rem;
+	list-style-type: none;
+}
+
+.table-of-contents ol::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 3px; /* Adjust the width as needed */
+	background-color: black; /* Change color as needed */
+}
+
+.page > .makecode-embed {
+	padding: 2rem;
+	@apply drop-shadow-md;
+}
+
+@media (min-width: 1024px) {
+	h1, h2, h3, h4, h5, h6 {
+		text-align: left;
+	}
+
+	.heading-banner {
+		height: 4rem;
+		padding-left: 2rem;
+		padding-right: 2rem;
+		@apply flex-row;
+		@apply items-center;
+		@apply justify-between;
+		@apply gap-4;
+	}
+
+	.page > .sidebar {
+		display: block;
+		width: 20rem;
+		padding: 0.5rem;
+	}
+
+	.page > .sidebar .sidebar-image {
+		max-width: 200px;
+	}	
 }

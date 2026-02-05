@@ -1,25 +1,32 @@
 {
-  "name": "devices-lab-documentation-template",
+  "name": "@devices-lab/user-doc-base",
   "version": "1.0.0",
+  "type": "module",
   "description": "A markdown documentation template for device documentation that adheres to the Devices Lab 'official' styles and layouts",
-  "main": "index.js",
+  "main": ".eleventy.js",
   "repository": "https://github.com/devices-lab/website-template.git",
   "author": "Dr John Vidler <j.vidler@lancaster.ac.uk>",
   "license": "MIT",
   "private": true,
   "dependencies": {
     "@11ty/eleventy": "^3.1.2",
+    "@11ty/eleventy-navigation": "^1.0.5",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
+    "eleventy-plugin-toc": "^1.1.5",
+    "glob": "^13.0.1",
+    "markdown-it-anchor": "^9.2.0",
+    "markdown-it-container": "^4.0.0",
     "markdown-it-emoji": "^3.0.0"
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.1",
+    "@11ty/eleventy-plugin-bundle": "^1.0.0",
+    "autoprefixer": "^10.4.17",
     "postcss": "^8.4.33",
     "postcss-load-config": "^4.0.2",
-    "autoprefixer": "^10.4.17",
-    "@11ty/eleventy-plugin-bundle": "^1.0.0"
+    "tailwindcss": "^3.4.1"
   },
   "scripts": {
-    "dev": "npx @11ty/eleventy --serve",
+    "dev:11ty": "npx @11ty/eleventy --serve",
     "build": "npx @11ty/eleventy"
   }
 }

@@ -1,0 +1,36 @@
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/devices-lab/tailwind.css" />
+    <link rel="stylesheet" href="/css/devices-lab/theme.css" />
+    <link rel="stylesheet" href="/css/devices-lab/root.css" />
+    <link rel="stylesheet" href="/css/devices-lab/prismjs/prism-vs.css" />
+    <title>{{ title | default("Missing Title") }}</title>
+</head>
+<body>
+    {% include './fragments/header.njk' %}
+    <div class="page">
+        <div class="sidebar">
+            <div class="nav-wrapper">
+                <p>
+                    {%- if( image ) -%}
+                    <img src="{{ image }}" alt="{{ title | default('Image') }}" />
+                    {%- endif -%}
+                    {%- if( description ) -%}
+                        {{ description }}
+                    {%- endif -%}
+                </p>
+                <h3>{{ title | default("Missing Title") }}</h3>
+                <hr />
+                <h3>Contents</h3>
+                {{ content | toc | safe }}
+            </div>
+        </div>
+        <div class="content">
+            {{ content | safe }}
+        </div>
+    </div>
+</body>
+</html>
