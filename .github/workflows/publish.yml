@@ -15,19 +15,23 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
+
+      - name: Create release archive
+        run: |
+          tar -czf user-doc-base-${{ github.ref_name }}.tgz \
+            package.json \
+            yarn.lock \
+            README.md \
+            LICENSE \
+            .eleventy.js \
+            postcss.config.js \
+            tailwind.config.js \
+            src
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          files: |
-            package.json
-            yarn.lock
-            README.md
-            LICENSE
-            .eleventy.js
-            postcss.config.js
-            tailwind.config.js
-            src/**/*
+          files: user-doc-base-${{ github.ref_name }}.tgz
           draft: false
           prerelease: true
         env:
