@@ -24,8 +24,13 @@
                 </p>
                 <h3>{{ title | default("Missing Title") }}</h3>
                 <hr />
-                <h3>Contents</h3>
                 {{ content | toc | safe }}
+                <hr />
+                <ul>
+                    {% for name, item in collections.allç√ç %}
+                        <li>{{ name | dump }}: {{ item | dump }}</li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
         <div class="content">

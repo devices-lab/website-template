@@ -174,6 +174,11 @@ export default async function(eleventyConfig, options = {}) {
 	//eleventyConfig.addPassthroughCopy({ "src/css": "css" });
 	eleventyConfig.addPassthroughCopy({ "src/img": "img" });
 
+	// Build some custom collections to aid navigation and content structuring
+	eleventyConfig.addCollection("pages", function(collectionApi) {
+		return collectionApi.getAll();
+	});
+
 	// Process CSS with PostCSS
 	eleventyConfig.addTemplateFormats("css");
 	eleventyConfig.addExtension("css", {

@@ -16,9 +16,7 @@
     "glob": "^13.0.1",
     "markdown-it-anchor": "^9.2.0",
     "markdown-it-container": "^4.0.0",
-    "markdown-it-emoji": "^3.0.0"
-  },
-  "devDependencies": {
+    "markdown-it-emoji": "^3.0.0",
     "@11ty/eleventy-plugin-bundle": "^1.0.0",
     "autoprefixer": "^10.4.17",
     "postcss": "^8.4.33",

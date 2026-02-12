@@ -220,6 +220,7 @@ a {
 	border-radius: 25%;
 	margin-left: auto;
 	margin-right: auto;
+	width: 100%;
 	@apply drop-shadow-md;
 }
 
