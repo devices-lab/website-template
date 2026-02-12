@@ -10,20 +10,22 @@
   "private": false,
   "dependencies": {
     "@11ty/eleventy-navigation": "^1.0.5",
+    "@11ty/eleventy-plugin-bundle": "^1.0.0",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
     "eleventy-plugin-toc": "^1.1.5",
     "glob": "^13.0.1",
-    "markdown-it-anchor": "^9.2.0",
     "markdown-it-container": "^4.0.0",
-    "markdown-it-emoji": "^3.0.0",
-    "@11ty/eleventy-plugin-bundle": "^1.0.0"
+    "markdown-it-emoji": "^3.0.0"
   },
   "peerDependencies": {
     "@11ty/eleventy": "^3.1.2",
     "autoprefixer": "^10.4.17",
+    "markdown-it": "^14.1.1",
     "postcss": "^8.4.33",
     "postcss-load-config": "^4.0.2",
-    "tailwindcss": "^3.4.1"
+    "tailwindcss": "^3.4.1",
+    "markdown-it-anchor": "^9.2.0",
+    "@types/markdown-it": "^14.1.2"
   },
   "scripts": {
     "dev:11ty": "npx @11ty/eleventy --serve",
