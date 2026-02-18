@@ -158,7 +158,6 @@ export default async function(eleventyConfig, options = {}) {
 		].join('\n');
 	});
 
-
 	// Include CSS files for processing
 	eleventyConfig.addTemplateFormats(["md", "njk", "html", "css"]);
 
