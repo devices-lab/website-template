@@ -8,6 +8,7 @@ import markdownItContainer from "markdown-it-container";
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 import pluginTOC from "eleventy-plugin-toc";
 import { fileURLToPath } from 'url';
+import file from "node:fs";
 import path from 'path';
 import { cpSync, existsSync, mkdirSync, readFileSync } from 'fs';
 import { glob } from 'glob';
@@ -39,6 +40,7 @@ function deepMerge(target, ...sources) {
 }
 
 export default async function(eleventyConfig, options = {}) {
+	eleventyConfig.addGlobalData( "site", JSON.parse(file.readFileSync("./package.json", "utf-8")) );
 	
 	// Determine target input dir from the options list
 	const __targetInputDir = options.inputDir || 'src';

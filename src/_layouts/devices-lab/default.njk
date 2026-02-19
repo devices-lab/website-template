@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/devices-lab/theme.css" />
     <link rel="stylesheet" href="css/devices-lab/root.css" />
     <link rel="stylesheet" href="css/devices-lab/prismjs/prism-vs.css" />
-    <title>{{ title | default("Missing Title") }}</title>
+    <title>{{ title | default(site.name) }}</title>
 </head>
 <body>
     {% include './fragments/header.njk' %}
@@ -18,16 +18,16 @@
                     {%- if( image ) -%}
                     <img src="{{ image }}" alt="{{ title | default('Image') }}" />
                     {%- endif -%}
-                    {%- if( description ) -%}
-                        {{ description }}
+                    {%- if( description | default(site.description) ) -%}
+                        {{ description | default(site.description) }}
                     {%- endif -%}
                 </p>
-                <h3>{{ title | default("Missing Title") }}</h3>
+                <h3>{{ title | default(site.name) }}</h3>
                 <hr />
                 {{ content | toc | safe }}
                 <hr />
                 <ul>
-                    {% for name, item in collections.allç√ç %}
+                    {% for name, item in collections.all %}
                         <li>{{ name | dump }}: {{ item | dump }}</li>
                     {% endfor %}
                 </ul>
