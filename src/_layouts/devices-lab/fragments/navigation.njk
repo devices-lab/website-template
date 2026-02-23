@@ -2,7 +2,7 @@
     <div class="block-wrapper nav-wrapper">
         <p>
             {%- if( image ) -%}
-            <img src="{{ image }}" alt="{{ title | default('Image') }}" class="sidebar-image" />
+            <img src="{{ image | url }}" alt="{{ title | default('Image') }}" class="sidebar-image" />
             {%- endif -%}
             {%- if( description | default(site.description) ) -%}
                 {{ description | default(site.description) }}
