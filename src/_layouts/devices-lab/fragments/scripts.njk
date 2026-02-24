@@ -1,0 +1,17 @@
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const tocs = document.querySelectorAll('.table-of-contents');
+        tocs.forEach(toc => {
+            toc.classList.add('collapsed');
+            toc.style.cursor = 'pointer';
+            toc.addEventListener('click', (e) => {
+                // Only toggle on click of the ::before pseudo-element area (top of element)
+                if (e.clientY < toc.offsetTop + 45) {
+                    e.preventDefault();
+                    toc.classList.toggle('expanded');
+                    toc.classList.toggle('collapsed');
+                }
+            });
+        });
+    });
+</script>
