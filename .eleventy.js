@@ -18,43 +18,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const packageSrcPath = path.join(__dirname, 'src' );
 
-function normalizePathPrefix(value) {
-	if (!value) return "/";
-
-	let prefix = String(value).trim();
-	if (!prefix.startsWith('/')) prefix = `/${prefix}`;
-	if (!prefix.endsWith('/')) prefix = `${prefix}/`;
-	prefix = prefix.replace(/\/+/g, '/');
-
-	return prefix === '//' ? '/' : prefix;
-}
-
-function withPathPrefix(assetPath, pathPrefix) {
-	if (!assetPath) return assetPath;
-
-	const url = String(assetPath);
-	if (
-		url.startsWith('#') ||
-		url.startsWith('mailto:') ||
-		url.startsWith('data:') ||
-		/^(?:[a-z]+:)?\/\//i.test(url)
-	) {
-		return url;
-	}
-
-	const suffixMatch = url.match(/[?#].*$/);
-	const suffix = suffixMatch ? suffixMatch[0] : '';
-	const rawPath = suffix ? url.slice(0, -suffix.length) : url;
-	const normalizedPath = rawPath.startsWith('/') ? rawPath : `/${rawPath}`;
-	const normalizedPrefix = normalizePathPrefix(pathPrefix);
-
-	if (normalizedPrefix === '/') {
-		return `${normalizedPath}${suffix}`;
-	}
-
-	return `${normalizedPrefix.slice(0, -1)}${normalizedPath}${suffix}`;
-}
-
 function isObject(item) {
 	return item && typeof item === "object" && !Array.isArray(item);
 }
@@ -79,13 +42,6 @@ function deepMerge(target, ...sources) {
 export default async function(eleventyConfig, options = {}) {
 	// Load package.json and do a tiny bit of preprocessing to make it easier to render later
 	const siteData = JSON.parse(file.readFileSync("./package.json", "utf-8"));
-	const pathPrefix = normalizePathPrefix(
-		options.pathPrefix ||
-		siteData?.extra?.pathPrefix ||
-		process.env.ELEVENTY_PATH_PREFIX ||
-		process.env.PATH_PREFIX ||
-		"/"
-	);
 
 	if( siteData.extra ) {
 		if( siteData.extra.keywords && typeof siteData.extra.keywords === 'string' )
@@ -117,8 +73,6 @@ export default async function(eleventyConfig, options = {}) {
 		}
 	}
 	eleventyConfig.addGlobalData( "site", siteData );
-	eleventyConfig.addGlobalData( "pathPrefix", pathPrefix );
-	eleventyConfig.addNunjucksFilter("assetUrl", (assetPath) => withPathPrefix(assetPath, pathPrefix));
 	
 	// Determine target input dir from the options list
 	const __targetInputDir = options.inputDir || 'src';
