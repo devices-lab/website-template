@@ -1,15 +1,63 @@
 <div class="sidebar">
-    <div class="block-wrapper nav-wrapper">
-        <p>
-            {%- if( image ) -%}
-            <img src="{{ image | url }}" alt="{{ title | default('Image') }}" class="sidebar-image" />
-            {%- endif -%}
-            {%- if( description | default(site.description) ) -%}
-                {{ description | default(site.description) }}
-            {%- endif -%}
-        </p>
-        <p>
-        {{ content | toc | safe }}
-        </p>
-    </div>
+  <div class="block-wrapper nav-wrapper">
+    <p>
+      {%- if image -%}
+      <img src="{{ image | url }}" alt="{{ title | default('Image') }}" class="sidebar-image" />
+      {%- endif -%}
+      <h3>{{ title | default(site.title) }}</h3>
+    </p>
+    {%- if description | default(site.description) -%}
+    <hr />
+    <p>{{ description | default(site.description) }}</p>
+    {%- endif -%}
+    <hr />
+
+    {% set nav = docNavigationFor(page.url) %}
+    {% set toc = nav.tocList %}
+
+    {% macro renderHeadings(items) %}
+      {% if items and items.length %}
+        <ul class="toc-sections">
+          {% for item in items %}
+            <li class="{% if item.isActive %}is-active-section{% elseif item.isActivePath %}is-active-section-path{% endif %}">
+              <a href="{{ item.url | url }}">{{ item.title }}</a>
+              {% if item.children and item.children.length %}
+                {{ renderHeadings(item.children) }}
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endmacro %}
+
+    {% macro renderPages(nodes) %}
+      {% if nodes and nodes.length %}
+        <ul class="toc-pages toc-subpages">
+          {% for node in nodes %}
+            <li class="{% if node.isActive %}is-active-page{% endif %}">
+              <a href="{{ node.url | url }}">{{ node.title }}</a>
+              {{ renderHeadings(node.headings) }}
+              {% if node.children and node.children.length %}
+                {{ renderPages(node.children) }}
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endmacro %}
+
+    <nav class="doc-toc">
+      <ul class="toc-pages">
+        {% for node in toc %}
+          <li class="{% if node.isActive %}is-active-page{% endif %}">
+            <a href="{{ node.url | url }}">{{ node.title }}</a>
+            {{ renderHeadings(node.headings) }}
+            {% if node.children and node.children.length %}
+              {{ renderPages(node.children) }}
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
 </div>

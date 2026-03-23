@@ -1,5 +1,6 @@
 <div class="sidebar sidebar-secondary">
     <div class="block-wrapper info-wrapper">
+        <h2 style="text-align: center;">About</h2>
         <p>The sources for this documentation are available at <a href="{{ site.repository }}">GitHub</a> and is published under the {{ site.license }} license.</p>
 
         {%- if site.contributors and site.contributors | length > 0 -%}
@@ -22,7 +23,7 @@
             <h3>Associated Artifacts</h3>
             <ul>
                 {%- for hw in site.extra.hwidx -%}
-                    <li><a href="https://{{ hw }}">{{ hw }}</a></li>
+                    <li><a class="no-decoration hwidx" href="https://{{ hw }}"><img src="https://m.{{ hw }}/logo-mark-horizontal.png" alt="https://{{ hw }}" /></a></li>
                 {%- endfor -%}
             </ul>
         {%- endif -%}

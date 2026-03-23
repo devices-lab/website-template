@@ -142,6 +142,7 @@ a {
 	background-color: #f9f9f9aa;
 	margin-bottom: 1rem;
 	margin-top: 1rem;
+	padding-right: 1rem;
 }
 
 .content blockquote p {
@@ -185,6 +186,7 @@ a {
 	max-width: 80%;
 	margin-left: auto;
 	margin-right: auto;
+	padding: 1rem;
 }
 
 .content figure img {
@@ -351,9 +353,11 @@ a {
 	background-color: black; /* Change color as needed */
 }
 
-.page > .makecode-embed {
-	padding: 2rem;
+.makecode-embed {
 	@apply drop-shadow-md;
+	border-radius: var(--box-corner-radius);
+	background-color: white;
+	overflow: hidden;
 }
 
 .sidebar-image {
@@ -402,6 +406,7 @@ a {
 		display: block;
 		max-width: 20rem;
 		padding: 0.5rem;
+		width: 100%;
 	}
 
 	.page>.sidebar .sidebar-image {
@@ -424,5 +429,71 @@ a {
 
 	.table-of-contents.expanded ol {
 		display: block;
+	}
+}
+
+
+.doc-toc > ul {
+	padding-left: 0.5rem;
+}
+
+.doc-toc .is-active-page > * {
+	font-weight: 900;
+}
+
+.doc-toc .is-active-section-path>a {
+	opacity: 1;
+}
+
+.doc-toc .toc-sections a {
+	opacity: 0.85;
+}
+
+.toc-pages > li {
+	margin-top: 0.5rem;
+}
+
+.toc-pages > li.is-active-page {
+	border-left: 4px solid var(--color-root-link);
+	background-color: rgba(128, 128, 128, 0.05);
+	border-radius: 0 4px 4px 0;
+}
+
+.toc-pages ul li {
+	padding-left: 1rem;
+}
+
+a:hover {
+	border-color: var(--color-link-hover);
+	border-bottom: 3px solid var(--color-link-hover);
+	margin-bottom: -1px;
+}
+
+a.no-decoration {
+	border: none;
+}
+a.no-decoration:hover {
+	border: none;
+	margin: 0;
+}
+
+.hwidx {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.hwidx > img {
+	max-height: 10rem;
+	aspect-ratio: 1 / 1;
+}
+
+@media (max-width: 1400px) {
+	.doc-toc {
+		text-align: center;
+	}
+
+	.doc-toc > .toc-pages > li > a {
+		font-size: large;
+		font-weight: 600;
 	}
 }
